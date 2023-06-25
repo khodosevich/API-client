@@ -1,9 +1,10 @@
 import {Box, Button, TextField} from "@mui/material";
 import axios from "axios";
 import {useState} from "react";
+import {CreateUserAPI} from "../api/methods";
 
 
-const CreateUsers = (props) => {
+const CreateUsers = () => {
 
     const [user,setUser] = useState({name:"" , age:""});
 
@@ -15,26 +16,20 @@ const CreateUsers = (props) => {
         }));
     };
 
-    let PostRequestOnCreateUser = () => {
+    let PostRequestOnCreateUser = async () => {
 
-        axios.post("http://localhost:5001/api/user/createUser", {
-                username:user.name,
-                age:user.age
-        })
-            .then(response => {
-                console.log(response.data);
-                setUser({ name: "", age: "" });
-            })
-            .catch(error => {
-                console.error(error);
-            });
+        try{
+            await CreateUserAPI(user);
+            setUser({ name: "", age: "" });
+        }catch (error){
+            console.log(error);
+            throw error;
+        }
     }
-
 
     return (
         <Box>
             Create Users
-
             <Box sx={{ marginTop: "20px" }}>
                 <TextField
                     name="name"
@@ -56,7 +51,6 @@ const CreateUsers = (props) => {
                     Create User
                 </Button>
             </Box>
-
         </Box>
     );
 };

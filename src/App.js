@@ -1,14 +1,12 @@
 import {Box} from "@mui/material";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Delete from "./pages/DeleteUser/Delete";
-import Header from "./Header/Header";
-import Home from "./pages/Home/Home";
-import GetUserById from "./pages/GetUserById/GetUserById";
-import GetUsers from "./pages/GetUsers/GetUsers";
-import GetCounter from "./pages/GetCounter/GetCounter";
-import CreateUsers from "./pages/CreateUser/CreateUsers";
-
-
+import DeleteUser from "./pages/DeleteUser";
+import Header from "./header/Header";
+import Home from "./pages/Home";
+import GetUserById from "./pages/GetUserById";
+import GetUsers from "./pages/GetUsers";
+import GetCounter from "./pages/GetCounter";
+import CreateUsers from "./pages/CreateUsers";
 
 function App() {
   return (
@@ -27,12 +25,11 @@ function App() {
                     <Route path="/getUserById" element={<GetUserById/>}/>
                     <Route path="/getCounter" element={<GetCounter/>}/>
                     <Route path="/createUser" element={<CreateUsers/>}/>
-                    <Route path="/delete" element={<Delete/>}/>
+                    <Route path="/delete" element={<DeleteUser/>}/>
                 </Routes>
             </BrowserRouter>
         </Box>
       </Box>
-
   );
 }
 

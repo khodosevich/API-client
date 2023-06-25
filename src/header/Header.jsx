@@ -3,7 +3,6 @@ import {NavLink} from "react-router-dom";
 import links from "./links.json"
 
 const Header = () => {
-
     return(
         <ul
             style={{
@@ -22,5 +21,4 @@ const Header = () => {
         </ul>
     )
 }
-
 export default Header;

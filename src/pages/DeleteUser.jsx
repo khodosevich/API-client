@@ -1,22 +1,13 @@
 import {Box, Button, TextField} from "@mui/material";
-import axios from "axios";
-import {useEffect, useState} from "react";
+import { useState} from "react";
+import {DeleteUserByIdAPI} from "../api/methods";
 
-const Delete = () => {
-
+const DeleteUser = () => {
     const [userID,setUserID] = useState("");
 
-    let DeleteRequest = () => {
-        axios.delete("http://localhost:5001/api/user/delete",{
-            data: {
-                id:userID
-            }
-        })
-            .then(res => {
-                console.log(res)
-                setUserID("");
-            })
-            .catch(e => {console.log(e)})
+    const DeleteRequest = () => {
+        DeleteUserByIdAPI(userID);
+        setUserID("");
     }
 
     return(
@@ -35,7 +26,6 @@ const Delete = () => {
             </Box>
         </Box>
     )
-
 }
 
-export default Delete;
+export default DeleteUser;

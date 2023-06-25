@@ -1,23 +1,24 @@
 import {Box, Button} from "@mui/material";
-import axios from "axios";
 import {useEffect, useState} from "react";
+import {GetCounterAPI} from "../api/methods";
 
 const GetCounter = () => {
 
     const [counter,setCounter] = useState();
 
+    const GetCountRequest = async () => {
+        try{
+            const count = await GetCounterAPI();
+            setCounter(count.requestCount);
+        }catch (error){
+            console.log(error);
+            throw error;
+        }
+    }
+
     useEffect(() => {
         GetCountRequest();
     }, []);
-
-    let GetCountRequest = () => {
-        axios.get("http://localhost:5001/api/getRequestsCount")
-            .then(res => {
-                setCounter(res.data.requestCount)
-                console.log(res)
-            })
-            .catch(e => {console.log(e)})
-    }
 
     return(
         <Box>
@@ -34,7 +35,6 @@ const GetCounter = () => {
             </Box>
         </Box>
     )
-
 }
 
 export default GetCounter;
