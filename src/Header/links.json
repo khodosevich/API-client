@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Get users",
+    "link": "/getUsers"
+  },
+  {
+    "name": "Get counter",
+    "link": "/getCounter"
+  },
+  {
+    "name": "Get user by id",
+    "link": "/getUserById"
+  },
+  {
+    "name": "Create user",
+    "link": "/createUser"
+  },
+  {
+    "name": "Delete",
+    "link": "/delete"
+  }
+]
