@@ -1,7 +1,7 @@
 import {Box, Button, TextField} from "@mui/material";
 import {useEffect, useState} from "react";
-import {Card} from "antd";
-import {GetUserByIdAPI} from "../api/methods";
+import {getUserByIdAPI} from "../api/methods";
+import CardUser from "./CardUser";
 
 const GetUserById = () => {
 
@@ -10,7 +10,7 @@ const GetUserById = () => {
 
     const getUserIdRequest = async () => {
         try {
-            const user = await GetUserByIdAPI(userID);
+            const user = await getUserByIdAPI(userID);
             setState(user.user);
         } catch (error) {
             console.error(error);
@@ -33,12 +33,8 @@ const GetUserById = () => {
                 <Button onClick={getUserIdRequest} variant="contained">click</Button>
             </Box>
             <Box sx={{margin:"20px 0"}}>
-                <Card size="small" title={state.username} extra={<a href="src/pages/GetUserById#">More</a>} style={{ width: 300 }}>
-                    <p>Age is {state.age}</p>
-                    <p>ID is {state.id}</p>
-                </Card>
+                 <CardUser state={state} />
             </Box>
-
         </Box>
     )
 }

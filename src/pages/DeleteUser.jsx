@@ -1,12 +1,12 @@
 import {Box, Button, TextField} from "@mui/material";
 import { useState} from "react";
-import {DeleteUserByIdAPI} from "../api/methods";
+import {deleteUserByIdAPI} from "../api/methods";
 
 const DeleteUser = () => {
     const [userID,setUserID] = useState("");
 
     const DeleteRequest = () => {
-        DeleteUserByIdAPI(userID);
+        deleteUserByIdAPI(userID);
         setUserID("");
     }
 

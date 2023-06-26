@@ -1,7 +1,6 @@
 import {Box, Button, TextField} from "@mui/material";
-import axios from "axios";
 import {useState} from "react";
-import {CreateUserAPI} from "../api/methods";
+import {createUserAPI} from "../api/methods";
 
 
 const CreateUsers = () => {
@@ -17,9 +16,8 @@ const CreateUsers = () => {
     };
 
     let PostRequestOnCreateUser = async () => {
-
         try{
-            await CreateUserAPI(user);
+            await createUserAPI(user);
             setUser({ name: "", age: "" });
         }catch (error){
             console.log(error);

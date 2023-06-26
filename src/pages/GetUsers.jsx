@@ -1,7 +1,7 @@
 import {Box, Button} from "@mui/material";
-import {Card} from "antd";
 import {useEffect, useState} from "react";
-import {GetUsersAPI} from "../api/methods";
+import {getUsersAPI} from "../api/methods";
+import CardUser from "./CardUser";
 
 const GetUsers = () => {
 
@@ -9,7 +9,7 @@ const GetUsers = () => {
 
     const getUsersRequest = async () => {
         try{
-            const users = await GetUsersAPI()
+            const users = await getUsersAPI()
             setData(users);
         }catch (error){
             console.log(error)
@@ -45,10 +45,7 @@ const GetUsers = () => {
                     justifyContent:"center"
                 }}>
                     {data.map(x => (
-                        <Card key={x.id} size="small" title={x.username} extra={<a href="src/pages/GetUsers#">More</a>} style={{ width: 300 }}>
-                            <p>Age is {x.age}</p>
-                            <p>ID is {x.id}</p>
-                        </Card>
+                        <CardUser state={x} />
                     ))}
                 </Box>
             </Box>

@@ -1,10 +1,12 @@
 import axios from "axios";
 
-const url =" http://localhost:5001/api";
+const api = axios.create({
+    baseURL:"http://localhost:5001/api/"
+})
 
-export const DeleteUserByIdAPI = async (userID) => {
+export const deleteUserByIdAPI = async (userID) => {
     try{
-        const response = await axios.delete(url + "/user/delete",{
+        const response = await api.delete( "/user/delete",{
             data: {
                 id:userID
             }
@@ -17,10 +19,10 @@ export const DeleteUserByIdAPI = async (userID) => {
     }
 }
 
-export const GetUserByIdAPI = async (userID) => {
+export const getUserByIdAPI = async (userID) => {
 
     try {
-        const response = await axios.get(url + `/user/getUserById?id=${userID}`);
+        const response = await api.get("/user/getUserById",{ params: {id:userID} });
         console.log(response.data)
         return response.data;
     } catch (error) {
@@ -29,10 +31,10 @@ export const GetUserByIdAPI = async (userID) => {
     }
 }
 
-export const GetUsersAPI = async () => {
+export const getUsersAPI = async () => {
 
     try{
-        const response = await axios.get(url + "/user/getUsers");
+        const response = await api.get(  "/user/getUsers");
         console.log(response.data);
         return response.data;
     }catch (error){
@@ -41,10 +43,10 @@ export const GetUsersAPI = async () => {
     }
 }
 
-export const GetCounterAPI = async () => {
+export const getCounterAPI = async () => {
 
     try{
-        const response = await axios.get(url + "/getRequestsCount");
+        const response = await api.get(  "/getRequestsCount");
         console.log(response.data);
         return response.data;
     }catch (error){
@@ -53,9 +55,9 @@ export const GetCounterAPI = async () => {
     }
 }
 
-export const CreateUserAPI =  async (user) => {
+export const createUserAPI =  async (user) => {
     try{
-        const response = await axios.post("http://localhost:5001/api/user/createUser", {
+        const response = await api.post("/user/createUser", {
                 username:user.name,
                 age:user.age
             })

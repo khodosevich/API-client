@@ -1,6 +1,6 @@
 import {Box, Button} from "@mui/material";
 import {useEffect, useState} from "react";
-import {GetCounterAPI} from "../api/methods";
+import {getCounterAPI} from "../api/methods";
 
 const GetCounter = () => {
 
@@ -8,7 +8,7 @@ const GetCounter = () => {
 
     const GetCountRequest = async () => {
         try{
-            const count = await GetCounterAPI();
+            const count = await getCounterAPI();
             setCounter(count.requestCount);
         }catch (error){
             console.log(error);
