@@ -1,3 +1,4 @@
+import React from 'react';
 import {Box, Button, TextField} from "@mui/material";
 import {useEffect, useState} from "react";
 import {getUserByIdAPI} from "../api/methods";
