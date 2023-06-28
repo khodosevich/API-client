@@ -2,12 +2,22 @@ import React , { useState} from "react";
 import {Box, Button, TextField} from "@mui/material";
 import {deleteUserByIdAPI} from "../api/methods";
 
-const DeleteUser = () => {
-    const [userID,setUserID] = useState("");
+const DeleteUser = ()  => {
+    const [userID ,setUserID] = useState<string>();
 
     const DeleteRequest = () => {
-        deleteUserByIdAPI(userID);
-        setUserID("");
+
+        const id : number = Number(userID);
+
+        if(isNaN(id)){
+            alert("Invalid UserID");
+            setUserID('');
+            return;
+        }
+
+        deleteUserByIdAPI(Number(userID));
+        alert('user was deleted')
+        setUserID('');
     }
 
     return(

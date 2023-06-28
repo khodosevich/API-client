@@ -1,14 +1,15 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const { Configuration } = require('webpack');
 
 module.exports = (env,argv) => {
 
     console.log("Application webpack mode is " , argv.mode);
 
-    return{
+    const config: Configuration = {
         mode: argv.mode,
-        entry: './src/index.js',
+        entry: './src/index.tsx',
         output: {
             filename: 'bundle.js',
             path: path.resolve(__dirname, 'built')
@@ -39,11 +40,16 @@ module.exports = (env,argv) => {
                 {
                     test: /\.css$/,
                     use: ['style-loader', 'css-loader'],
+                },
+                {
+                    test: /\.(ts|tsx)$/,
+                    exclude: /node_modules/,
+                    use: 'ts-loader'
                 }
             ]
         },
         resolve: {
-            extensions: ['.js', '.jsx']
+            extensions: ['.js', '.jsx','.ts','.tsx']
         },
 
         plugins: [
@@ -67,4 +73,6 @@ module.exports = (env,argv) => {
             ]
         } : {},
     }
+
+    return config;
 };

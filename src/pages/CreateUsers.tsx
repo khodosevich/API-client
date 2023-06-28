@@ -6,9 +6,9 @@ import {createUserAPI} from "../api/methods";
 
 const CreateUsers = () => {
 
-    const [user,setUser] = useState({name:"" , age:""});
+    const [user,setUser] = useState<{name : string, age : string}>({name:"" , age:""});
 
-    const handleInputChange = (event) => {
+    const handleInputChange = (event : React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setUser((prevState) => ({
             ...prevState,

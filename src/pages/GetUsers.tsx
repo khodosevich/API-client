@@ -1,14 +1,13 @@
-import React from 'react';
 import {Box, Button} from "@mui/material";
-import {useEffect, useState} from "react";
-import {getUsersAPI} from "../api/methods";
+import React , {useEffect, useState} from "react";
+import {getUsersAPI, UserType} from "../api/methods";
 import CardUser from "./CardUser";
 
 const GetUsers = () => {
 
-    const [data,setData] = useState([]);
+    const [data,setData] = useState<UserType[]>([]);
 
-    const getUsersRequest = async () => {
+    const getUsersRequest = async ()  => {
         try{
             const users = await getUsersAPI()
             setData(users);
@@ -46,7 +45,7 @@ const GetUsers = () => {
                     justifyContent:"center"
                 }}>
                     {data.map(x => (
-                        <CardUser state={x} />
+                        <CardUser id={x.id} username={x.username} age={x.age} />
                     ))}
                 </Box>
             </Box>

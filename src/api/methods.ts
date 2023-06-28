@@ -4,7 +4,7 @@ const api = axios.create({
     baseURL:"http://localhost:5001/api/"
 })
 
-export const deleteUserByIdAPI = async (userID) => {
+export const deleteUserByIdAPI = async (userID : number) => {
     try{
         const response = await api.delete( "/user/delete",{
             data: {
@@ -19,7 +19,7 @@ export const deleteUserByIdAPI = async (userID) => {
     }
 }
 
-export const getUserByIdAPI = async (userID) => {
+export const getUserByIdAPI = async (userID : number)=> {
 
     try {
         const response = await api.get("/user/getUserById",{ params: {id:userID} });
@@ -55,10 +55,10 @@ export const getCounterAPI = async () => {
     }
 }
 
-export const createUserAPI =  async (user) => {
+export const createUserAPI =  async (user : { name : string , age : string}) => {
     try{
         const response = await api.post("/user/createUser", {
-                username:user.name,
+                username:user.name ,
                 age:user.age
             })
         console.log(response.data);
@@ -67,4 +67,10 @@ export const createUserAPI =  async (user) => {
         console.log(error);
         throw error;
     }
+}
+
+export type UserType = {
+    username: string,
+    id: number,
+    age : number
 }
