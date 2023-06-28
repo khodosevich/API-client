@@ -1,26 +1,28 @@
 import React from 'react';
-import {Box, Button, TextField} from "@mui/material";
+import {Box, Button, TextField, Typography} from "@mui/material";
 import {useState} from "react";
-import {createUserAPI} from "../api/methods";
+import {UserType, method} from "../api/methods";
 
 
 const CreateUsers = () => {
-
-    const [user,setUser] = useState<{name : string, age : string}>({name:"" , age:""});
+    const [user, setUser] = useState<UserType>({username: "" , age: 0});
 
     const handleInputChange = (event : React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
+
         setUser((prevState) => ({
             ...prevState,
             [name]: value,
         }));
     };
 
-    let PostRequestOnCreateUser = async () => {
-        try{
-            await createUserAPI(user);
-            setUser({ name: "", age: "" });
-        }catch (error){
+    const createUserHandle = async () => {
+        try {
+            await method.createUserAPI(user);
+
+            setUser({ username: "", age: 0 });
+            
+        } catch (error){
             console.log(error);
             throw error;
         }
@@ -28,15 +30,17 @@ const CreateUsers = () => {
 
     return (
         <Box>
-            Create Users
+            <Typography variant='h2'>Create Users</Typography>
+           
             <Box sx={{ marginTop: "20px" }}>
                 <TextField
                     name="name"
                     label="Name"
-                    value={user.name}
+                    value={user.username}
                     onChange={handleInputChange}
                 />
             </Box>
+
             <Box sx={{ marginTop: "20px" }}>
                 <TextField
                     name="age"
@@ -45,8 +49,9 @@ const CreateUsers = () => {
                     onChange={handleInputChange}
                 />
             </Box>
+
             <Box sx={{ marginTop: "20px" }}>
-                <Button onClick={PostRequestOnCreateUser} variant="contained">
+                <Button onClick={createUserHandle} variant="contained">
                     Create User
                 </Button>
             </Box>

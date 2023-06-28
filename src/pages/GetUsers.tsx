@@ -1,18 +1,19 @@
 import {Box, Button} from "@mui/material";
 import React , {useEffect, useState} from "react";
-import {getUsersAPI, UserType} from "../api/methods";
+import {method, UserType} from "../api/methods";
 import CardUser from "./CardUser";
 
 const GetUsers = () => {
-
-    const [data,setData] = useState<UserType[]>([]);
+    const [users, setUsers] = useState<UserType[]>([]);
 
     const getUsersRequest = async ()  => {
-        try{
-            const users = await getUsersAPI()
-            setData(users);
-        }catch (error){
+        try {
+            const data = await method.getUsersAPI()
+
+            setUsers(data);
+        } catch (error){
             console.log(error)
+
             throw error;
         }
     }
@@ -26,11 +27,13 @@ const GetUsers = () => {
             <Box>
                 Get Users
             </Box>
+
             <Box sx={{
                 marginTop:"40px"
             }}>
                 <Button onClick={getUsersRequest} variant="contained">click</Button>
             </Box>
+
             <Box
                 sx={{
                     background:"black",
@@ -44,9 +47,7 @@ const GetUsers = () => {
                     gap:"10px",
                     justifyContent:"center"
                 }}>
-                    {data.map(x => (
-                        <CardUser id={x.id} username={x.username} age={x.age} />
-                    ))}
+                    {users.map(x => <CardUser id={x.id} username={x.username} age={x.age} />)}
                 </Box>
             </Box>
         </Box>

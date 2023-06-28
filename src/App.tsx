@@ -9,9 +9,8 @@ import GetUsers from "./pages/GetUsers";
 import GetCounter from "./pages/GetCounter";
 import CreateUsers from "./pages/CreateUsers";
 
-function App() {
-  return (
-      <Box>
+const App = () => {
+    return (
         <Box
             sx={{
                 width:"1200px",
@@ -30,8 +29,7 @@ function App() {
                 </Routes>
             </BrowserRouter>
         </Box>
-      </Box>
-  );
+    );
 }
 
 export default App;

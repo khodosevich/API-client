@@ -1,38 +1,34 @@
 import React , { useState} from "react";
-import {Box, Button, TextField} from "@mui/material";
-import {deleteUserByIdAPI} from "../api/methods";
+import {Box, Button, TextField, Typography} from "@mui/material";
+import {method} from "../api/methods";
 
-const DeleteUser = ()  => {
-    const [userID ,setUserID] = useState<string>();
+const DeleteUser = () => {
+    const [userID, setUserID] = useState<number | null>(null);
 
-    const DeleteRequest = () => {
-
-        const id : number = Number(userID);
-
-        if(isNaN(id)){
+    const deleteRequestHandle = () => {
+        if(userID){
             alert("Invalid UserID");
-            setUserID('');
-            return;
+
+            return
         }
 
-        deleteUserByIdAPI(Number(userID));
-        alert('user was deleted')
-        setUserID('');
+        method.deleteUserByIdAPI(userID);
+
+        alert('user was deleted');
     }
 
     return(
         <Box>
-            <Box>
-                Delete use by ID
-            </Box>
+            <Typography>Delete use by ID</Typography>
             <Box sx={{
                 marginTop:'30px',
                 marginBottom:"30px"
             }}>
-                <TextField value={userID} onChange={e => {setUserID(e.target.value)}} id="filled-basic" label="ID user:" variant="filled" />
+                <TextField value={userID} onChange={e => setUserID(Number(e.target.value))} id="filled-basic" label="ID user:" variant="filled" />
             </Box>
+
             <Box>
-                <Button onClick={DeleteRequest} variant="contained">click</Button>
+                <Button onClick={deleteRequestHandle} variant="contained">click</Button>
             </Box>
         </Box>
     )

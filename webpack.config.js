@@ -1,13 +1,12 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const { Configuration } = require('webpack');
 
 module.exports = (env,argv) => {
 
     console.log("Application webpack mode is " , argv.mode);
 
-    const config: Configuration = {
+    const config = {
         mode: argv.mode,
         entry: './src/index.tsx',
         output: {
@@ -31,7 +30,6 @@ module.exports = (env,argv) => {
                             presets: ['@babel/preset-env', '@babel/preset-react']
                         }
                     },
-
                 },
                 {
                     test: /\.html$/,
@@ -51,7 +49,6 @@ module.exports = (env,argv) => {
         resolve: {
             extensions: ['.js', '.jsx','.ts','.tsx']
         },
-
         plugins: [
             new HtmlWebpackPlugin({
                 template: './public/index.html',

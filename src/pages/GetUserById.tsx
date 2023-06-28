@@ -1,28 +1,23 @@
 import React from 'react';
-import {Box, Button, TextField} from "@mui/material";
+import {Box, Button, TextField, Typography} from "@mui/material";
 import {useEffect, useState} from "react";
-import {getUserByIdAPI, UserType} from "../api/methods";
+import {method, UserType} from "../api/methods";
 import CardUser from "./CardUser";
 
 const GetUserById = () => {
-
-    const [state, setState] = useState<UserType>({username : "", id : 0 , age : 0});
-    const [userID,setUserId] = useState<string>("" );
+    const [state, setState] = useState<UserType>({username: "", id: 0, age: 0});
+    const [userID, setUserId] = useState<number | null>(null);
 
     const getUserIdRequest = async () => {
 
-        const id : number = Number(userID);
-
-        if(isNaN(id)){
+        if(userID){
             alert("Invalid input");
-            setUserId('');
             return;
         }
 
         try {
-            const user = await getUserByIdAPI(id);
+            const user = await method.getUserByIdAPI(userID);
             setState(user.user);
-            setUserId('');
         } catch (error) {
             console.error(error);
         }
@@ -34,17 +29,22 @@ const GetUserById = () => {
 
     return(
         <Box>
-            <Box>
-                Get User By Id
-            </Box>
+            <Typography>Get User By Id</Typography>
+
             <Box sx={{margin:"20px 0"}}>
-                <TextField value={userID} onChange={e => setUserId(e.target.value)} id="filled-basic" label="ID user:" variant="filled" />
+                <TextField value={userID} onChange={e => setUserId(Number(e.target.value))} id="filled-basic" label="ID user:" variant="filled" />
             </Box>
+
             <Box>
                 <Button onClick={getUserIdRequest} variant="contained">click</Button>
             </Box>
+
             <Box sx={{margin:"20px 0"}}>
-                 <CardUser {...state} />
+                <CardUser 
+                    username={state.username} 
+                    age={state.age}
+                    id={state.id}
+                />
             </Box>
         </Box>
     )
