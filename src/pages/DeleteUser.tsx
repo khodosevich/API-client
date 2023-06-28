@@ -6,15 +6,16 @@ const DeleteUser = () => {
     const [userID, setUserID] = useState<number | null>(null);
 
     const deleteRequestHandle = () => {
-        if(userID){
+        if(!userID){
             alert("Invalid UserID");
-
             return
         }
 
         method.deleteUserByIdAPI(userID);
 
         alert('user was deleted');
+
+        setUserID(0);
     }
 
     return(

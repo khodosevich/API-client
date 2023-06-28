@@ -57,11 +57,11 @@ export const method = {
             throw error;
         }
     },
-    async createUserAPI(user: UserType) {
+    async createUserAPI(user: { name: string , age: string }) {
         try{
             await api.post("/user/createUser", 
             {
-                username: user.username,
+                username: user.name,
                 age: user.age
             })
         } catch (error){

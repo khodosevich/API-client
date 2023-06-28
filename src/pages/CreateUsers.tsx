@@ -1,13 +1,14 @@
 import React from 'react';
 import {Box, Button, TextField, Typography} from "@mui/material";
 import {useState} from "react";
-import {UserType, method} from "../api/methods";
+import { method } from "../api/methods";
 
 
 const CreateUsers = () => {
-    const [user, setUser] = useState<UserType>({username: "" , age: 0});
 
-    const handleInputChange = (event : React.ChangeEvent<HTMLInputElement>) => {
+    const [user,setUser] = useState<{name: string, age: string}>({name:"" , age:""});
+
+    const handleInputChange = (event : React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = event.target;
 
         setUser((prevState) => ({
@@ -20,7 +21,7 @@ const CreateUsers = () => {
         try {
             await method.createUserAPI(user);
 
-            setUser({ username: "", age: 0 });
+            setUser({ name: "", age: "" });
             
         } catch (error){
             console.log(error);
@@ -31,12 +32,12 @@ const CreateUsers = () => {
     return (
         <Box>
             <Typography variant='h2'>Create Users</Typography>
-           
+
             <Box sx={{ marginTop: "20px" }}>
                 <TextField
                     name="name"
                     label="Name"
-                    value={user.username}
+                    value={user.name}
                     onChange={handleInputChange}
                 />
             </Box>

@@ -9,12 +9,6 @@ const GetUserById = () => {
     const [userID, setUserId] = useState<number | null>(null);
 
     const getUserIdRequest = async () => {
-
-        if(userID){
-            alert("Invalid input");
-            return;
-        }
-
         try {
             const user = await method.getUserByIdAPI(userID);
             setState(user.user);
@@ -29,7 +23,7 @@ const GetUserById = () => {
 
     return(
         <Box>
-            <Typography>Get User By Id</Typography>
+            <Typography variant="h5">Get User By Id</Typography>
 
             <Box sx={{margin:"20px 0"}}>
                 <TextField value={userID} onChange={e => setUserId(Number(e.target.value))} id="filled-basic" label="ID user:" variant="filled" />
@@ -41,9 +35,9 @@ const GetUserById = () => {
 
             <Box sx={{margin:"20px 0"}}>
                 <CardUser 
-                    username={state.username} 
-                    age={state.age}
-                    id={state.id}
+                    username={state?.username}
+                    age={state?.age}
+                    id={state?.id}
                 />
             </Box>
         </Box>
