@@ -20,7 +20,6 @@ const CreateUsers = () => {
     const createUserHandle = async () => {
         try {
             await method.createUserAPI(user);
-
             setUser({ name: "", age: "" });
             
         } catch (error){

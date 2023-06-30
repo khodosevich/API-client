@@ -1,4 +1,4 @@
-import {Box, Button} from "@mui/material";
+import {Box, Button, Typography} from "@mui/material";
 import React , {useEffect, useState} from "react";
 import {method, UserType} from "../api/methods";
 import CardUser from "./CardUser";
@@ -24,21 +24,22 @@ const GetUsers = () => {
 
     return(
         <Box>
-            <Box>
-                Get Users
-            </Box>
+            <Typography variant="h3">
+                All our users:
+            </Typography>
 
-            <Box sx={{
-                marginTop:"40px"
-            }}>
-                <Button onClick={getUsersRequest} variant="contained">click</Button>
-            </Box>
+            {/*<Box sx={{*/}
+            {/*    marginTop:"40px"*/}
+            {/*}}>*/}
+            {/*    <Button onClick={getUsersRequest} variant="contained">click</Button>*/}
+            {/*</Box>*/}
 
             <Box
                 sx={{
-                    background:"black",
-                    padding:"20px",
-                    marginTop:"20px"
+                    background: "grey",
+                    padding: "20px",
+                    marginTop: "20px",
+                    borderRadius: "20px"
                 }}
             >
                 <Box sx={{

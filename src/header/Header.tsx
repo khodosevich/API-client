@@ -1,25 +1,28 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
-import { List } from '@mui/material';
+import {Box, List} from '@mui/material';
 import links from "./links.json"
 
 const Header = () => {
     return(
-        <List
-            sx={{
-                display: "flex",
-                justifyContent: "space-around"
-            }}
-        >
-            {links.map(x => (
-                <NavLink
-                      style={{
-                          textDecoration:"none",
-                          color:"black",
-                      }}
-                      to={x.link}>{x.name}</NavLink>
+        <Box sx={{margin:"20px 0" }}>
+            <List
+                sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+
+                }}
+            >
+                {links.map(x => (
+                    <NavLink
+                        style={{
+                            textDecoration:"none",
+                            color:"black",
+                        }}
+                        to={x.link}>{x.name}</NavLink>
                 ))}
-        </List>
+            </List>
+        </Box>
     )
 }
 export default Header;

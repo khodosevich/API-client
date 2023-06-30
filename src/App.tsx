@@ -1,6 +1,6 @@
 import React from 'react';
 import {Box} from "@mui/material";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import { HashRouter, Route, Routes} from "react-router-dom";
 import DeleteUser from "./pages/DeleteUser";
 import Header from "./header/Header";
 import Home from "./pages/Home";
@@ -17,7 +17,7 @@ const App = () => {
                 margin:"0 auto"
             }}
         >
-            <BrowserRouter>
+            <HashRouter>
                 <Header/>
                 <Routes>
                     <Route path="/" element={<Home/>}/>
@@ -27,7 +27,7 @@ const App = () => {
                     <Route path="/createUser" element={<CreateUsers/>}/>
                     <Route path="/delete" element={<DeleteUser/>}/>
                 </Routes>
-            </BrowserRouter>
+            </HashRouter>
         </Box>
     );
 }

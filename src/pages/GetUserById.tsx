@@ -23,7 +23,7 @@ const GetUserById = () => {
 
     return(
         <Box>
-            <Typography variant="h5">Get User By Id</Typography>
+            <Typography variant="h3">Get User By Id</Typography>
 
             <Box sx={{margin:"20px 0"}}>
                 <TextField value={userID} onChange={e => setUserId(Number(e.target.value))} id="filled-basic" label="ID user:" variant="filled" />
@@ -33,13 +33,24 @@ const GetUserById = () => {
                 <Button onClick={getUserIdRequest} variant="contained">click</Button>
             </Box>
 
-            <Box sx={{margin:"20px 0"}}>
-                <CardUser 
-                    username={state?.username}
-                    age={state?.age}
-                    id={state?.id}
-                />
-            </Box>
+            {state !== null
+                ?
+                (
+                    <Box sx={{margin:"20px 0"}}>
+                        <CardUser
+                            username={state?.username}
+                            age={state?.age}
+                            id={state?.id}
+                        />
+                    </Box>
+                )
+                :
+                (
+                    <Box sx={{marginTop:"50px"}}>
+                       <Typography variant="h5">User is not found</Typography>
+                    </Box>
+                )
+            }
         </Box>
     )
 }

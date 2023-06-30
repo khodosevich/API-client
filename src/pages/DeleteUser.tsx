@@ -20,7 +20,7 @@ const DeleteUser = () => {
 
     return(
         <Box>
-            <Typography>Delete use by ID</Typography>
+            <Typography variant="h3">Delete use by ID</Typography>
             <Box sx={{
                 marginTop:'30px',
                 marginBottom:"30px"
